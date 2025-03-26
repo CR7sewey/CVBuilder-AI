@@ -28,10 +28,7 @@ function App() {
       path: "/auth/sign-in",
       element: <SignInPage />,
     },
-    {
-      path: "/auth/sign-up",
-      element: <SignUpPage />,
-    },
+
 
   ]);
 

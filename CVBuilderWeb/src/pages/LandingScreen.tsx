@@ -1,8 +1,13 @@
+import { Button } from '@/components/ui/button';
 import React from 'react';
-
+import { Link } from 'react-router-dom';
+import { UserButton } from '@clerk/clerk-react';
 const LandingScreen = () => {
     return (
         <div className="min-h-screen bg-background">
+            <div className="flex justify-end mt-4 mr-4">
+                <UserButton />
+            </div>
             {/* Hero Section */}
             <div className="container mx-auto px-4 py-8">
                 <div className="text-center">
@@ -49,9 +54,11 @@ const LandingScreen = () => {
                             </div>
                         </div>
                     </div>
-                    <button className="bg-primary text-primary-foreground px-8 py-3 rounded-lg text-lg font-semibold hover:bg-primary/90 transition-colors">
-                        Start Building
-                    </button>
+                    <Button asChild>
+                        <Link to="/dashboard">
+                            Start Building
+                        </Link>
+                    </Button>
                 </div>
 
             </div>
