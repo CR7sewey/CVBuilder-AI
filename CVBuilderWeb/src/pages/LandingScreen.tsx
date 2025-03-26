@@ -1,15 +1,13 @@
+import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { UserButton } from '@clerk/clerk-react';
 const LandingScreen = () => {
     return (
         <div className="min-h-screen bg-background">
-            <div className="flex justify-end mt-4 mr-4">
-                <UserButton />
-            </div>
+            <Header />
             {/* Hero Section */}
-            <div className="container mx-auto px-4 py-8">
+            <div className="container mx-auto px-4 py-4">
                 <div className="text-center">
                     <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
                         Create Your Professional CV <br />with the power of AI
