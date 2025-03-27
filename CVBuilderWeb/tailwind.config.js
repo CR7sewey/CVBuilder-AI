@@ -9,6 +9,7 @@ export default {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
     "./src/**/*.{js,ts,jsx,tsx}",
+    "./index.html",
   ],
   darkMode: "class",
 
@@ -80,6 +81,7 @@ export default {
         "fade-in": "fadeIn 0.5s ease-in-out",
         "slide-in": "slideIn 0.5s ease-in-out",
         "bounce-slow": "bounce 3s infinite",
+        scroll: "scroll 20s linear infinite",
       },
       keyframes: {
         fadeIn: {
@@ -93,6 +95,10 @@ export default {
         bounce: {
           "0%, 100%": { transform: "translateY(-5%)" },
           "50%": { transform: "translateY(0)" },
+        },
+        scroll: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(calc(-50% - 1rem))" },
         },
       },
       boxShadow: {

@@ -1,3 +1,4 @@
+import BrandsFooter from '@/components/BrandsFooter';
 import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import React from 'react';
@@ -61,7 +62,7 @@ const LandingScreen = () => {
 
             </div>
             {/* Features Section */}
-            <div className="bg-muted/50">
+            <div className="bg-muted/50 mb-20">
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <div className="text-center p-6">
@@ -82,6 +83,7 @@ const LandingScreen = () => {
                     </div>
                 </div>
             </div>
+            <BrandsFooter />
         </div>
     );
 };
