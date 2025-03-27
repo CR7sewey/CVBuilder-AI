@@ -15,14 +15,13 @@ import { v4 as uuidv4 } from 'uuid';
 import { createResume } from "../../services/ApiConnection";
 import { useUser } from "@clerk/clerk-react"
 import { Loader2 } from "lucide-react"
-
+import { useNavigate } from "react-router-dom"
 export function DialogDemo({ open, setOpen, children }: { open: boolean, setOpen: (open: boolean) => void, children: React.ReactNode }) {
 
     const [title, setTitle] = useState("")
     const { user } = useUser()
-
     const [loading, setLoading] = useState(false)
-
+    const navigate = useNavigate()
     const onCreateResume = async () => {
         const id = uuidv4()
         console.log(id, title)
@@ -37,7 +36,7 @@ export function DialogDemo({ open, setOpen, children }: { open: boolean, setOpen
         }
         setLoading(true)
         try {
-            const response = "A" //await createResume(data)
+            const response = data //await createResume(data)
             console.log(response)
             //            await new Promise(resolve => setTimeout(resolve, 5000))
 
@@ -45,6 +44,9 @@ export function DialogDemo({ open, setOpen, children }: { open: boolean, setOpen
             console.log(error)
         }
         setLoading(false)
+        navigate(`/dashboard/resume/${id}/edit`)
+
+        //navigate(`/dashboard/resume/${response.data.data.documentId}/edit`)
     }
 
 

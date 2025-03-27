@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
-import { Card, CardHeader, CardTitle } from './ui/card'
-import { PlusSquare } from 'lucide-react'
+import { Card, CardDescription, CardHeader, CardTitle } from './ui/card'
+import { Notebook, PlusSquare } from 'lucide-react'
 import { DialogDemo } from './Dialog'
-const CVCard = ({ title, description, image }: { title?: string, description?: string, image?: string }) => {
-    const [open, setOpen] = useState(false)
+import { useNavigate } from 'react-router-dom'
 
+const CVCard = ({ title, resumeId }: { title?: string, resumeId?: string }) => {
+    const [open, setOpen] = useState(false)
+    const navigate = useNavigate()
     if (title == null) {
         return (
             <DialogDemo open={open} setOpen={setOpen}>
@@ -22,12 +24,15 @@ const CVCard = ({ title, description, image }: { title?: string, description?: s
     }
     return (
         <div className='flex flex-col gap-2'>
-            <Card>
+            <Card onClick={() => navigate(`/dashboard/resume/${resumeId}/edit`)}
+                className='p-14 bg-secondary flex items-center justify-center h-[280px] hover:scale-105 transition-all hover:shadow-md duration-300 cursor-pointer border-primary border rounder-lg shadow-pink-500'>
                 <CardHeader>
-                    <CardTitle>CV 1</CardTitle>
+                    <CardTitle>
+                        <Notebook className='ml-2' />
+                    </CardTitle>
                 </CardHeader>
             </Card>
-
+            <h2 className='text-center my-1 text-lg font-bold'>{title}</h2>
         </div>
     )
 }

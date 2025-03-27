@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomeLayout from './pages/HomeLayout';
 import SignInPage from './pages/auth/SignInPage';
 import Dashboard from './pages/Dashboard';
+import EditResume from './pages/resume/EditResume';
 
 function App() {
 
@@ -15,6 +16,11 @@ function App() {
           path: "/dashboard",
           element: <Dashboard />,
         },
+        {
+          path: "/dashboard/resume/:resumeId/edit",
+          element: <EditResume />,
+        },
+
 
       ],
     },

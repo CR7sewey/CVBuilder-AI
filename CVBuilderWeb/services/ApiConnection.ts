@@ -21,11 +21,29 @@ type ResumeData = {
   title: string;
   userEmail: string;
   userName: string;
+  resumeId: string;
 };
 
 const createResume = async (data: ResumeData) => {
   const response = await axiosInstance.post("/user-resumes", data);
   return response.data;
+};
+
+const getResumes = async (
+  userEmail: string,
+  resumeId?: string
+): Promise<ResumeData[] | ResumeData> => {
+  if (resumeId) {
+    const response = await axiosInstance.get(
+      `/user-resumes/${resumeId}?filters[userEmail][$eq]=${userEmail}`
+    );
+    return response.data;
+  } else {
+    const response = await axiosInstance.get(
+      `/user-resumes?filters[userEmail][$eq]=${userEmail}`
+    );
+    return response.data;
+  }
 };
 
 axiosInstance.interceptors.request.use(
@@ -43,4 +61,4 @@ axiosInstance.interceptors.request.use(
 );
 
 export default axiosInstance;
-export { createResume };
+export { createResume, getResumes, type ResumeData };

@@ -7,7 +7,9 @@ const HomeLayout = () => {
     return (
         <div>
             <Header />
-            {!signIn ? <Outlet /> : <Navigate to="/auth/sign-in" />}
+            <div className='p-10 md:px-20 lg:px-32'>
+                {!signIn ? <Outlet /> : <Navigate to="/auth/sign-in" />}
+            </div>
         </div>
     )
 }
