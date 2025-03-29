@@ -14,7 +14,7 @@ export const ResumePreview = () => {
             {/** Personal Detail */}
             <PersonalDetailPreview resumeInfo={resumeInfo} />
             {/** Summary */}
-            <SummaryPreview resumeInfo={resumeInfo} />
+            {resumeInfo?.summary && <SummaryPreview resumeInfo={resumeInfo} />}
             {/** Work Experience */}
             <ProfessionalExperiencePreview resumeInfo={resumeInfo} />
             {/** Education */}

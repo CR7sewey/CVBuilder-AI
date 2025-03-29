@@ -5,16 +5,18 @@ import { Form } from 'react-router-dom'
 import { Resume, useResume } from '../../../../context/Context'
 import { Button } from '@/components/ui/button'
 import { updateResume } from '../../../../services/ApiConnection'
-import { Loader2, LoaderCircle } from 'lucide-react'
+import { Brain, Loader2, LoaderCircle } from 'lucide-react'
+import { GeminiService } from '../../../../services/GeminiService'
 export const SummaryPreviewForm = ({ resumeInfo, setEnableNextButton }: { resumeInfo: Resume | null, setEnableNextButton: (enable: boolean) => void }) => {
     const { resumeInfo: resInfo, setResumeInfo } = useResume();
     const [loading, setLoading] = useState(false)
+    const [aiGeneratedSummary, setAiGeneratedSummary] = useState<string[]>([])
     console.log(resInfo)
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const formData = new FormData(e.target as HTMLFormElement)
         const data = Object.fromEntries(formData)
-        setResumeInfo({ ...resInfo, ...data })
+        setResumeInfo({ ...resInfo, summary: data.summary as string })
         console.log(resInfo)
 
         try {
@@ -30,23 +32,54 @@ export const SummaryPreviewForm = ({ resumeInfo, setEnableNextButton }: { resume
         }
 
     }
-    if (loading) {
-        return <div className='flex justify-center items-center h-screen'>
-            <Loader2 className='w-10 h-10 animate-spin' />
-        </div>
+
+    const generateSummary = async () => {
+        setAiGeneratedSummary([])
+        setLoading(true)
+        const prompt = `
+        Generate a summary for a curriculum vitae of the following resume:
+        Title: ${resumeInfo?.title}
+        Name: ${resumeInfo?.name}
+        Job Title: ${resumeInfo?.jobTitle}
+        Education: ${resumeInfo?.education}
+        Experience: ${resumeInfo?.experience}
+        Skill1: ${resumeInfo?.skills?.[0]?.name}
+        Skill2: ${resumeInfo?.skills?.[1]?.name}
+        Skill3: ${resumeInfo?.skills?.[2]?.name}
+        Please generate a summary of the resume that is at most 150 characters long.
+        `
+        //const summary = await GeminiService(prompt)
+        for (let i = 0; i < 3; i++) {
+            const summary = await GeminiService(prompt)
+            setAiGeneratedSummary(aiGeneratedSummary => [...aiGeneratedSummary, summary])
+        }
+        //console.log(summary)
+        setLoading(false)
     }
+
     return (
         <div >
             <h2 className='text-lg font-bold'>Summary</h2>
             <p className='text-sm text-gray-500 mb-4'>Insert a summary of your career goals and achievements</p>
             <form method='post' onSubmit={handleSubmit} className='flex flex-col gap-4'>
-
-                <Textarea id='summary' defaultValue={resumeInfo?.summary} placeholder='Summary' maxLength={100} className='resize-none' />
+                <Button type='button' variant='outline' className='mt-4 w-fit self-end border-t-primary border-t-2 border-r-primary border-r-2 border-b-primary border-b-2 border-l-primary border-l-2 hover:bg-fuchsia-200' onClick={() => generateSummary()}>
+                    <Brain /> AI Generated Summary
+                </Button>
+                <Textarea id='summary' defaultValue={resumeInfo?.summary} placeholder='Summary' maxLength={150} className='resize-none' />
 
                 <div className='flex justify-end'>
-                    <Button type='submit' className='mt-4'>Save</Button>
+                    <Button type='submit' className='mt-4' disabled={loading}>{loading ? <LoaderCircle className='w-4 h-4 animate-spin' /> : "Save"}</Button>
                 </div>
             </form>
+
+            {aiGeneratedSummary && <div className='mt-4'>
+                <h2 className='text-lg font-bold'>AI Generated Summary</h2>
+                {aiGeneratedSummary.map((summary, index) => (
+                    <div key={index} className='flex flex-col gap-2'>
+                        <p className='text-sm text-gray-500 mb-4'>{summary}</p>
+                    </div>
+                ))}
+            </div>}
         </div>
     )
 }
