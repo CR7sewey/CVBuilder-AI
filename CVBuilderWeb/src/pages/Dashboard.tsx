@@ -20,14 +20,14 @@ const Dashboard = () => {
                         title: "CV 1",
                         userEmail: "test@test.com",
                         userName: "Test User",
-                        resumeId: "1"
+                        documentId: "1"
                     },
                     {
                         userId: "2",
                         title: "CV 2",
                         userEmail: "test2@test.com",
                         userName: "Test User 2",
-                        resumeId: "2"
+                        documentId: "2"
                     }
                 ]
                 const response = mockResponse
@@ -62,7 +62,7 @@ const Dashboard = () => {
                     <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4'>
                         <CVCard />
                         {cvs.map((cv) => (
-                            <CVCard key={cv.userId} title={cv.title} resumeId={cv.resumeId} />
+                            <CVCard key={cv.documentId} title={cv.title} resumeId={cv.documentId} />
                         ))}
                     </div>
                 </div>

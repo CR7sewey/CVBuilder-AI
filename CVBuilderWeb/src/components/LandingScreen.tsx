@@ -1,9 +1,10 @@
 import React from 'react';
 import BrandsFooter from './BrandsFooter';
-
+import { ReviewsBackground } from './ReviewsLP';
 const LandingScreen = () => {
     return (
         <div className="min-h-screen bg-background">
+            <ReviewsBackground />
             {/* Hero Section */}
             <div className="container mx-auto px-4 py-16">
                 <div className="text-center">

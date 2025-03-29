@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Education, Experience, Skill } from "context/Context";
 const url = "http://localhost:1337/api/";
 
 const token = import.meta.env.VITE_STRAPI_API_KEY; // not defined yet
@@ -17,14 +18,29 @@ const axiosInstance = axios.create({
 });
 
 type ResumeData = {
+  documentId?: string;
+  firstName?: string;
+  lastName?: string;
+  jobTitle?: string;
+  github?: string;
+  linkedin?: string;
+  portfolio?: string;
+  email?: string;
+  phone?: string;
+  address?: string;
+  summary?: string;
+  themeColor?: string;
+  experience?: Experience[];
+  education?: Education[];
+  skills?: Skill[];
+};
+
+const createResume = async (data: {
   userId: string;
   title: string;
   userEmail: string;
   userName: string;
-  resumeId: string;
-};
-
-const createResume = async (data: ResumeData) => {
+}) => {
   const response = await axiosInstance.post("/user-resumes", data);
   return response.data;
 };
@@ -46,6 +62,11 @@ const getResumes = async (
   }
 };
 
+const updateResume = async (resumeId: string, data: ResumeData) => {
+  const response = await axiosInstance.put(`/user-resumes/${resumeId}`, data);
+  return response.data;
+};
+
 axiosInstance.interceptors.request.use(
   (request) => {
     // old version
@@ -61,4 +82,4 @@ axiosInstance.interceptors.request.use(
 );
 
 export default axiosInstance;
-export { createResume, getResumes, type ResumeData };
+export { createResume, getResumes, type ResumeData, updateResume };

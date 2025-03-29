@@ -1,11 +1,13 @@
 import BrandsFooter from '@/components/BrandsFooter';
 import Header from '@/components/Header';
+import { ReviewsBackground } from '@/components/ReviewsLP';
 import { Button } from '@/components/ui/button';
 import React from 'react';
 import { Link } from 'react-router-dom';
 const LandingScreen = () => {
     return (
         <div className="min-h-screen bg-background">
+
             <Header />
             {/* Hero Section */}
             <div className="container mx-auto px-4 py-4">
