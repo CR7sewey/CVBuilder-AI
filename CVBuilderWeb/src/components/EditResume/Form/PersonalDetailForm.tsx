@@ -47,7 +47,11 @@ export const PersonalDetailForm = ({ resumeInfo, setEnableNextButton }: { resume
                 <div className='flex flex-col grid grid-cols-2 gap-4'>
                     <div className='flex flex-col gap-2'>
                         <Label htmlFor='firstName' className='text-sm font-bold'>Full Name</Label>
-                        <Input type='text' id='fullName' name='fullName' placeholder='Full Name' defaultValue={resumeInfo?.firstName} required />
+                        <Input type='text' id='firstName' name='firstName' placeholder='firstName' defaultValue={resumeInfo?.firstName} required />
+                    </div>
+                    <div className='flex flex-col gap-2'>
+                        <Label htmlFor='lastName' className='text-sm font-bold'>Last Name</Label>
+                        <Input type='text' id='lastName' name='lastName' placeholder='lastName' defaultValue={resumeInfo?.lastName} required />
                     </div>
                     <div className='flex flex-col gap-2'>
                         <Label htmlFor='email' className='text-sm font-bold'>Email</Label>

@@ -6,6 +6,16 @@
 
 @custom-variant dark (&:is(.dark *));
 
+.rsw-ce ul {
+  list-style-type: disc;
+  padding-left: 2rem;
+}
+
+.rsw-ce ol {
+  list-style-type: decimal;
+  padding-left: 2rem;
+}
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);

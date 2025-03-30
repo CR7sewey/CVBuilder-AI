@@ -33,18 +33,17 @@ const EditResume = () => {
                     experience: [
                         {
                             id: "1",
-                            title: "Software Engineer",
+                            position: "Software Engineer",
                             companyName: "Google",
                             city: "Anytown",
                             state: "USA",
                             startDate: "2020-01-01",
-                            endDate: "2021-01-01",
-                            currentlyWorking: false,
+                            currentlyWorking: true,
                             workSummery: "I worked on the Google Cloud Platform."
                         },
                         {
                             id: "2",
-                            title: "Software Engineer",
+                            position: "Software Engineer",
                             companyName: "Google",
                             city: "Anytown",
                             state: "USA",

@@ -20,7 +20,7 @@ export type Resume = {
 
 export type Experience = {
     id?: string;
-    title?: string;
+    position?: string;
     companyName?: string;
     city?: string;
     state?: string;

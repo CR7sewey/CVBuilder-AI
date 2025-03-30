@@ -21,7 +21,7 @@ export const SummaryPreviewForm = ({ resumeInfo, setEnableNextButton }: { resume
 
         try {
             setLoading(true)
-            await updateResume(resumeInfo?.documentId ?? "", data)
+            //await updateResume(resumeInfo?.documentId ?? "", data)
         } catch (error) {
             console.error("Error updating resume:", error);
             throw error;
@@ -38,15 +38,14 @@ export const SummaryPreviewForm = ({ resumeInfo, setEnableNextButton }: { resume
         setLoading(true)
         const prompt = `
         Generate a summary for a curriculum vitae of the following resume:
-        Title: ${resumeInfo?.title}
-        Name: ${resumeInfo?.name}
+        Name: ${resumeInfo?.firstName}
         Job Title: ${resumeInfo?.jobTitle}
         Education: ${resumeInfo?.education}
         Experience: ${resumeInfo?.experience}
         Skill1: ${resumeInfo?.skills?.[0]?.name}
         Skill2: ${resumeInfo?.skills?.[1]?.name}
         Skill3: ${resumeInfo?.skills?.[2]?.name}
-        Please generate a summary of the resume that is at most 150 characters long.
+        Please generate a summary of the resume that is at most 300 characters long.
         `
         //const summary = await GeminiService(prompt)
         for (let i = 0; i < 3; i++) {
@@ -65,7 +64,7 @@ export const SummaryPreviewForm = ({ resumeInfo, setEnableNextButton }: { resume
                 <Button type='button' variant='outline' className='mt-4 w-fit self-end border-t-primary border-t-2 border-r-primary border-r-2 border-b-primary border-b-2 border-l-primary border-l-2 hover:bg-fuchsia-200' onClick={() => generateSummary()}>
                     <Brain /> AI Generated Summary
                 </Button>
-                <Textarea id='summary' defaultValue={resumeInfo?.summary} placeholder='Summary' maxLength={150} className='resize-none' />
+                <Textarea id='summary' name='summary' defaultValue={resumeInfo?.summary} placeholder='Summary' maxLength={300} className='resize-none' />
 
                 <div className='flex justify-end'>
                     <Button type='submit' className='mt-4' disabled={loading}>{loading ? <LoaderCircle className='w-4 h-4 animate-spin' /> : "Save"}</Button>

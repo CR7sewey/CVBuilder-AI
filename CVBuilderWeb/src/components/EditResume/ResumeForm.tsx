@@ -1,10 +1,10 @@
 import { useResume } from '../../../context/Context';
 import React, { useState } from 'react'
-import { PersonalDetailPreview } from './Preview/PersonalDetailPreview';
 import { PersonalDetailForm } from './Form/PersonalDetailForm';
 import { ChevronLeft, LayoutGrid } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { SummaryPreviewForm } from './Form/SummaryPreviewForm';
+import ProfessionalExperienceForm from './Form/ProfessionalExperienceForm';
 export const ResumeForm = () => {
     const [theme, setTheme] = useState<string>('primary');
     const [activeFormIndex, setActiveFormIndex] = useState<number>(1);
@@ -30,6 +30,6 @@ export const ResumeForm = () => {
             </div>
             {activeFormIndex === 1 && <PersonalDetailForm resumeInfo={resumeInfo} setEnableNextButton={setEnableNextButton} />}
             {activeFormIndex === 2 && <SummaryPreviewForm resumeInfo={resumeInfo} setEnableNextButton={setEnableNextButton} />}
-
+            {activeFormIndex === 3 && <ProfessionalExperienceForm resumeInfo={resumeInfo} setEnableNextButton={setEnableNextButton} />}
         </div>)
 }

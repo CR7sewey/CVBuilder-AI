@@ -16,11 +16,11 @@ export const ResumePreview = () => {
             {/** Summary */}
             {resumeInfo?.summary && <SummaryPreview resumeInfo={resumeInfo} />}
             {/** Work Experience */}
-            <ProfessionalExperiencePreview resumeInfo={resumeInfo} />
+            {resumeInfo?.experience && resumeInfo?.experience.length > 0 && <ProfessionalExperiencePreview resumeInfo={resumeInfo} />}
             {/** Education */}
-            <EducationPreview resumeInfo={resumeInfo} />
+            {resumeInfo?.education && resumeInfo?.education.length > 0 && <EducationPreview resumeInfo={resumeInfo} />}
             {/** Skills */}
-            <SkillsPreview resumeInfo={resumeInfo} />
+            {resumeInfo?.skills && resumeInfo?.skills.length > 0 && <SkillsPreview resumeInfo={resumeInfo} />}
             {/** Projects */}</div>
     )
 }
