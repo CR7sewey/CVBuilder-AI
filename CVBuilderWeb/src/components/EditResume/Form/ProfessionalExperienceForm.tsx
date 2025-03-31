@@ -1,5 +1,5 @@
 import { Experience, Resume, useResume } from '../../../../context/Context'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -11,9 +11,14 @@ import { v4 as uuidv4 } from 'uuid'
 import { RichTextEditor } from './RichTextEditor'
 import { toast } from 'react-toastify'
 
+
 const ProfessionalExperienceForm = ({ resumeInfo, setEnableNextButton }: { resumeInfo: Resume | null, setEnableNextButton: (enable: boolean) => void }) => {
     const { resumeInfo: resInfo, setResumeInfo } = useResume();
     const [loading, setLoading] = useState(false)
+
+    /* useEffect(() => {
+         setEnableNextButton(false)
+     }, [resumeInfo])*/
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -41,11 +46,12 @@ const ProfessionalExperienceForm = ({ resumeInfo, setEnableNextButton }: { resum
         try {
             setLoading(true)
             toast.success("Experience updated successfully")
-            //await updateResume(resumeInfo?.documentId ?? "", data)
+            //await updateResume(resumeInfo?.documentId ?? "", data: {experience: experience})
 
             await new Promise(resolve => setTimeout(resolve, 3000))
         } catch (error) {
             console.error("Error updating resume:", error);
+            toast.error("Error updating resume, please try again later")
             throw error;
         } finally {
 

@@ -5,6 +5,7 @@ import { ChevronLeft, LayoutGrid } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { SummaryPreviewForm } from './Form/SummaryPreviewForm';
 import ProfessionalExperienceForm from './Form/ProfessionalExperienceForm';
+import { EducationalForm } from './Form/EducationalForm';
 export const ResumeForm = () => {
     const [theme, setTheme] = useState<string>('primary');
     const [activeFormIndex, setActiveFormIndex] = useState<number>(1);
@@ -31,5 +32,6 @@ export const ResumeForm = () => {
             {activeFormIndex === 1 && <PersonalDetailForm resumeInfo={resumeInfo} setEnableNextButton={setEnableNextButton} />}
             {activeFormIndex === 2 && <SummaryPreviewForm resumeInfo={resumeInfo} setEnableNextButton={setEnableNextButton} />}
             {activeFormIndex === 3 && <ProfessionalExperienceForm resumeInfo={resumeInfo} setEnableNextButton={setEnableNextButton} />}
+            {activeFormIndex === 4 && <EducationalForm resumeInfo={resumeInfo} setEnableNextButton={setEnableNextButton} />}
         </div>)
 }
